@@ -9,13 +9,18 @@ let portfolio = [
     
 function helper(arr) {
     let ans = [];
-    
+    let map = {};
     arr.map((obj) => {
-        let temp = ans.find((ele) => {
-            return ele.stock && ele.stock === obj.stock
-        })
+       
+        if (obj.stock in map) {
+            let temp = ans.find((el) => {
+                return el.stock && el.stock === obj.stock
+            })
 
-        if (temp === undefined) {
+            temp['name'].push(obj.name);
+            temp['count'] += 1;
+
+        } else {
             let n = [];
                 n.push(obj.name);
                 ans.push({
@@ -23,9 +28,7 @@ function helper(arr) {
                     name: n,
                     count: 1
                 })
-        } else {
-            temp['name'].push(obj.name);
-            temp['count'] += 1;
+            map[obj.stock] = 1;
         }
     })
     
@@ -38,3 +41,4 @@ function helper(arr) {
 
 let ab = helper(portfolio);
 console.log(ab);
+
