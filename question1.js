@@ -29,6 +29,10 @@ function helper(arr) {
         }
     })
     
+    ans.sort((a, b) => {
+        return b.count - a.count;
+    } )
+
     return ans;
 }
 
